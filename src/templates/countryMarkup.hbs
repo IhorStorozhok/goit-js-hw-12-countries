@@ -1,0 +1,17 @@
+<div class='country__card'>
+  <h2>{{name}}</h2>
+  <img src='{{flags.png}}' alt='{{name}}' width='360' />
+  <ul>
+    <li>Capital: {{capital}}</li>
+    <li>Population: {{population}}</li>
+    <li>Languages:
+      <ul>
+        {{#each languages}}
+          <li>
+            {{name}}
+          </li>
+        {{/each}}
+      </ul>
+    </li>
+  </ul>
+</div>
