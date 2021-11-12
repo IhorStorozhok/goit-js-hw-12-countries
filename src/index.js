@@ -36,19 +36,25 @@ function onInputGetCountries(ev) {
   let inputValue = '';
   inputValue = ev.target.value.trim();
   if (inputValue.match('^[a-zA-Zs" "]+$')) {
-    fetchCountries(inputValue).then(response => {
-      refs.countriesList.innerHTML = '';
+    fetchCountries(inputValue)
+      .then(response => {
+        refs.countriesList.innerHTML = '';
 
-      if (response.length > 10) {
-        return makeAlartNotification();
-      }
-      if (response.length > 1) {
-        return makeCountriesList(response);
-      }
+        if (response.length > 10) {
+          return makeAlartNotification();
+        }
+        if (response.length > 1) {
+          return makeCountriesList(response);
+        }
 
-      return makeMarkup(response[0]);
-    });
-  } else {
+        if ((response.length = 1 && response[0].hasOwnProperty('capital'))) {
+          console.log(response);
+          return makeMarkup(response[0]);
+        }
+      })
+      .catch(() => {
+        alert('Указанная вами стана отсутствует, пожалуйста, попробуйте уточните запрос');
+      });
   }
 }
 
